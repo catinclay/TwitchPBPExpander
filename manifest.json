@@ -1,0 +1,17 @@
+{
+    "name": "Twitch-PBP-Expander",
+    "version": "0.1.1",
+    "author": "BuuProjects",
+    "description": "Expand and unmute the picture by picture video player for Twitch",
+    "content_scripts": [{
+        "matches": ["*://*.twitch.tv/*"],
+        "js": ["contentscript.js"],
+        "run_at": "document_start"
+    }],
+    "web_accessible_resources": ["injected.js"],
+    "icons": { 
+        "16": "icon16.png",
+        "32": "icon32.png",
+        "128": "icon128.png" },
+    "manifest_version": 2
+}
