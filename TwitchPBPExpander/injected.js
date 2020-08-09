@@ -57,7 +57,7 @@ function MaintainPBPVideoSound() {
         const pbpVideoContainer = document.querySelector('.pbyp-player-instance');
         const pbpVideo = pbpVideoContainer.querySelector('video');
         // aligns volume with original video.
-        pbpVideo.volume = originalVideo.volume;
+        pbpVideo.volume = GetOriginalVideo().volume;
         if (pbpVideo.muted) {
             pbpVideo.muted = false;    
         }
