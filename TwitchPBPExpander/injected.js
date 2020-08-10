@@ -80,7 +80,6 @@ function ExistAdsLabel() {
 }
 
 function ConfigureVideosAndModifyUI() {
-    console.log("ConfigureVideosAndModifyUI");
     const pbpVideoContainer = document.querySelector('.pbyp-player-instance');
     if (pbpVideoContainer == undefined || !ExistAdsLabel()) {
         // PBP Player does not exist or the ads label is not shown. Consider no ads is playing.
