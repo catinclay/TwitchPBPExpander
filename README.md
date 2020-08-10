@@ -19,7 +19,7 @@ Never missing out any exciting moment of your favorite streamer!
 </h1>
 
 # Warning
-*** This extension only works for the mode that Twitch provides PBP video ***
+**This extension only works for the mode that Twitch provides PBP video**
  * Twitch does not provide PBP when side chat bar is not allow.
  * Twitch does not provide PBP for those channel not under Gaming category.
 
