@@ -108,6 +108,12 @@ function ConfigureVideosAndModifyUI() {
     }
 }
 
-setInterval(function(){
+// create a new instance of `MutationObserver` named `observer`, 
+// passing it a callback function
+const observer = new MutationObserver(function() {
     ConfigureVideosAndModifyUI();
-}, 500);
+});
+
+// call `observe()` on that MutationObserver instance, 
+// passing it the element to observe, and the options object
+observer.observe(GetSideChat(), {subtree: true, childList: true});
