@@ -4,8 +4,8 @@ Expand and unmute the picture by picture video player for Twitch
 Never missing out any exciting moment of your favorite streamer!
 
 # Features
- * Expand the PBP video
- * Unmute PBP video
+ * Expands the PBP video
+ * Unmutes the PBP video
  
   
  <h4 align="center">
