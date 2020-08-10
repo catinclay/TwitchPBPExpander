@@ -1,6 +1,6 @@
 console.log("Injected Twitch PBP Expander.");
 
-var pbpIsExpanded = false;
+var isUnmutingPBPVideo = false;
 var originalVideoIsMuted = false;
 
 function GetOriginalVideo() {
@@ -80,18 +80,21 @@ function ConfigureVideosAndModifyUI() {
     const pbpVideoContainer = document.querySelector('.pbyp-player-instance');
     if (pbpVideoContainer == undefined || !ExistAdsLabel()) {
         // PBP Player does not exist or the ads label is not shown. Consider no ads is playing.
-        if (pbpIsExpanded) {
-            pbpIsExpanded = false;
-            ShrinkSideChat();
+        if (isUnmutingPBPVideo) {
+            isUnmutingPBPVideo = false;
             ConfigureSoundStatusWhenAdsEnd();
         }
+        // If watching mode changed during PBP expanding, side chat size will be broken so we have to 
+        // continuously maintain the size of the chat bar.
+        ShrinkSideChat();
     } else {
         // PBP Player does exist. It's now playing ads.
-        if (!pbpIsExpanded) {
-            pbpIsExpanded = true;
-            ExpandSideChat();
+        if (!isUnmutingPBPVideo) {
+            isUnmutingPBPVideo = true;
             ConfigureSoundStatusWhenAdsStart();
         }
+        // Keep maintaining the size of the chat bar.
+        ExpandSideChat();
         // PBP video sometimes got muted while ads is playing, so we workaround by keeping maintaining the muted status for it.
         MaintainPBPVideoSound();
     }
