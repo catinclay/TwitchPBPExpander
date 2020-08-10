@@ -13,8 +13,8 @@ Never missing out any exciting moment of your favorite streamer!
  </h4>
  <h1 align="center">
   
-  <img height="250" src="Samples/original_sample.png" alt="Original Sample" />
-  <img height="250" src="Samples/expanded_sample.png" alt="Expanded Sample" />
+  <img height="200" src="Samples/original_sample.png" alt="Original Sample" />
+  <img height="200" src="Samples/expanded_sample.png" alt="Expanded Sample" />
   <br/>
 </h1>
 
