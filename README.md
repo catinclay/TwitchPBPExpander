@@ -6,6 +6,12 @@ Never missing out any exciting moment of your favorite streamer!
 # Features
  - Expand the PBP video
  - Unmute PBP video
+ 
+ <h1 align="center">
+  <img width="300" src="Samples/original_sample.png" alt="Original Sample" />
+  <img width="300" src="Samples/expanded_sample.png" alt="Expanded Sample" />
+  <br/>
+</h1>
 
 # Warning
 *** This extension only works for the mode that Twitch provides PBP video ***
