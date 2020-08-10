@@ -2,6 +2,7 @@ console.log("Injected Twitch PBP Expander.");
 
 var isUnmutingPBPVideo = false;
 var originalVideoIsMuted = false;
+var originalVideoVolume = 0;
 
 function GetOriginalVideo() {
     const originalContainer = document.querySelector('.video-player__container');
@@ -47,8 +48,7 @@ function ConfigureSoundStatusWhenAdsStart() {
     // We don't unmute the pbp video here since we want to leverage MaintainPBPVideoSound().
     const originalVideo = GetOriginalVideo();
     originalVideoIsMuted = originalVideo.muted;
-    const pbpVideoContainer = document.querySelector('.pbyp-player-instance');
-    const pbpVideo = pbpVideoContainer.querySelector('video');
+    originalVideoVolume = originalVideo.volume;
     originalVideo.muted = true;
 }
 
@@ -57,10 +57,8 @@ function MaintainPBPVideoSound() {
         const pbpVideoContainer = document.querySelector('.pbyp-player-instance');
         const pbpVideo = pbpVideoContainer.querySelector('video');
         // aligns volume with original video.
-        pbpVideo.volume = GetOriginalVideo().volume;
-        if (pbpVideo.muted) {
-            pbpVideo.muted = false;    
-        }
+        pbpVideo.volume = originalVideoVolume;
+        pbpVideo.muted = false;
     }
 }
 
@@ -80,22 +78,24 @@ function ConfigureVideosAndModifyUI() {
     const pbpVideoContainer = document.querySelector('.pbyp-player-instance');
     if (pbpVideoContainer == undefined || !ExistAdsLabel()) {
         // PBP Player does not exist or the ads label is not shown. Consider no ads is playing.
+        
+        // If watching mode changed during PBP expanding, side chat size will be broken so we have to 
+        // continuously maintain the size of the chat bar.
+        ShrinkSideChat();
         if (isUnmutingPBPVideo) {
             isUnmutingPBPVideo = false;
             ConfigureSoundStatusWhenAdsEnd();
         }
-        // If watching mode changed during PBP expanding, side chat size will be broken so we have to 
-        // continuously maintain the size of the chat bar.
-        ShrinkSideChat();
     } else {
         // PBP Player does exist. It's now playing ads.
+
+        // Keep maintaining the size of the chat bar.
+        ExpandSideChat();
+
         if (!isUnmutingPBPVideo) {
             isUnmutingPBPVideo = true;
             ConfigureSoundStatusWhenAdsStart();
-        }
-        // Keep maintaining the size of the chat bar.
-        ExpandSideChat();
-        // PBP video sometimes got muted while ads is playing, so we workaround by keeping maintaining the muted status for it.
+        }        // PBP video sometimes got muted while ads is playing, so we workaround by keeping maintaining the muted status for it.
         MaintainPBPVideoSound();
     }
 }
