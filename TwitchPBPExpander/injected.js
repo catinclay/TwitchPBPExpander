@@ -110,10 +110,14 @@ function ConfigureVideosAndModifyUI() {
 
 // create a new instance of `MutationObserver` named `observer`, 
 // passing it a callback function
-const observer = new MutationObserver(function() {
+var observer = new MutationObserver(function() {
     ConfigureVideosAndModifyUI();
 });
 
-// call `observe()` on that MutationObserver instance, 
-// passing it the element to observe, and the options object
-observer.observe(GetSideChat(), {subtree: true, childList: true});
+// Wait until Chat bar exist.
+var checkExist = setInterval(function() {
+   if (GetSideChat()) {
+        observer.observe(GetSideChat(), {subtree: true, childList: true});
+        clearInterval(checkExist);
+   }
+}, 500);
